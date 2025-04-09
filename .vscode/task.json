@@ -1,0 +1,23 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Open register.html",
+            "file": "C:\\Users\\User HP\\Documents\\DataScienceProject\\dsProject\\register.html"
+        },
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Open s.html",
+            "file": "C:\\Users\\User HP\\Documents\\DataScienceProject\\dsProject\\s.html"
+        },
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Open backend.py",
+            "file": "C:\\Users\\User HP\\Documents\\DataScienceProject\\dsProject\\backend.py"
+        }
+    ]
+}
