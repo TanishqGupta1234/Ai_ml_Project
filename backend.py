@@ -14,35 +14,24 @@ app = Flask(__name__)
 CORS(app)
 
 # ============================
-#       Load Datasets
+# Load Dataset
 # ============================
-DATA_PATH_ENCODED = "C:\\Users\\User HP\\Documents\\DataScienceProject\\dsProject\\sports_data_encoded.csv"
-DATA_PATH_COACH = "C:\\Users\\User HP\\Documents\\DataScienceProject\\dsProject\\coach_dataset.xlsx"
+DATA_PATH = r"/Users/tanishqmacbook/Desktop/Ds_project/Ai_ml_Project/sports_data_encoded.csv"
 
-if not os.path.exists(DATA_PATH_ENCODED):
-    raise FileNotFoundError(f"Dataset not found at {DATA_PATH_ENCODED}. Please check the file path.")
+if not os.path.exists(DATA_PATH):
+    raise FileNotFoundError(f"Dataset not found at {DATA_PATH}. Please check the file path.")
 
-df = pd.read_csv(DATA_PATH_ENCODED)
+df = pd.read_csv(DATA_PATH)
 df.drop(columns=['Athlete_ID', 'name', 'email_id'], inplace=True, errors='ignore')
 
 if 'Injury_Risk' not in df.columns:
     np.random.seed(42)
     df['Injury_Risk'] = np.random.choice([0, 1], size=len(df))
 
-# Feature Selection
 target = 'Performance_Score'
 X = df.drop(columns=[target, 'Injury_Risk'])
 y = df[target]
 
-# Load Coach Dataset for Login
-if not os.path.exists(DATA_PATH_COACH):
-    raise FileNotFoundError(f"Coach dataset not found at {DATA_PATH_COACH}. Please check the file path.")
-
-df_coach = pd.read_excel(DATA_PATH_COACH, sheet_name=0)
-
-# ============================
-#   Train and Save Models
-# ============================
 scaler = StandardScaler()
 X_scaled = scaler.fit_transform(X)
 
@@ -50,39 +39,19 @@ X_scaled = scaler.fit_transform(X)
 xgb = XGBRegressor(objective='reg:squarederror', random_state=42, n_estimators=200, max_depth=6, learning_rate=0.05)
 xgb.fit(X_scaled, y)
 
-# Save the Model and Scaler
+# Save Model and Scaler
 joblib.dump(xgb, "xgboost_performance.pkl")
 joblib.dump(scaler, "scaler.pkl")
 
-print(" XGBoost Model and Scaler Saved!")
+print("✅ XGBoost Model and Scaler Saved!")
 
 # ============================
-#       API Endpoints
+# API Endpoints
 # ============================
 
 @app.route("/")
 def home():
-    return jsonify({"message": "Server is running! Use /predict, /train_rl, or /login"})
-
-# API: Coach Login
-@app.route('/login', methods=['POST'])
-def login():
-    try:
-        data = request.json
-        email = data.get("email")
-        password = data.get("password")
-        
-        if not email or not password:
-            return jsonify({"error": "Email and Password required!"})
-        
-        coach = df_coach[(df_coach['email'] == email) & (df_coach['password'] == password)]
-        if not coach.empty:
-            return jsonify({"message": "Login Successful"})
-        else:
-            return jsonify({"error": "Invalid Credentials"})
-    
-    except Exception as e:
-        return jsonify({"error": str(e)})
+    return jsonify({"message": "Server is running!"})
 
 # API: Predict Performance Score
 @app.route('/predict', methods=['POST'])
@@ -98,8 +67,43 @@ def predict():
         model = joblib.load("xgboost_performance.pkl")
         scaler = joblib.load("scaler.pkl")
 
-        X_new = scaler.transform([data])
+        data_array = np.array(data).reshape(1, -1)
+
+        # =========================
+        # Validate Age, Height, Weight
+        # =========================
+        age_value = data_array[0][0]    # Assuming Age is at index 0
+        weight_value = data_array[0][1] # Assuming Weight is at index 1
+        height_value = data_array[0][2] # Assuming Height is at index 2
+
+        # Age validation
+        if age_value < 17 or age_value > 40:
+            return jsonify({"error": "Invalid Age entered! Age must be between 17 and 40 years."})
+
+        # Height validation
+        if height_value < 100 or height_value > 250:
+            return jsonify({"error": "Invalid Height entered! Height must be between 100 and 250 cm."})
+
+        # Weight validation
+        if weight_value <= 0:
+            return jsonify({"error": "Invalid Weight entered! Weight must be greater than 0."})
+
+        # =========================
+        # Predict normally
+        # =========================
+        X_new = scaler.transform(data_array)
         prediction = model.predict(X_new)[0]
+
+        # =========================
+        # Apply Weight Penalty
+        # =========================
+        if weight_value < 52 or weight_value > 90:
+            penalty_factor = 0.5 if weight_value < 52 else 0.3
+            adjusted_prediction = prediction * penalty_factor
+            return jsonify({
+                "Performance_Score": float(adjusted_prediction),
+                "note": f"Weight {weight_value} is not in optimal range (52–90 kg). Score has been penalized."
+            })
 
         return jsonify({"Performance_Score": float(prediction)})
 
@@ -121,7 +125,7 @@ def train_rl():
         return jsonify({"error": str(e)})
 
 # ============================
-#       Run Server
+# Run Server
 # ============================
 if __name__ == '__main__':
     app.run(debug=True)
