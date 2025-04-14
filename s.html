@@ -228,7 +228,6 @@
                                     </div>
                                 </div>
                                 <div class="form-row">
-                                    
                                     <div class="form-group">
                                         <label for="height">Height (cm)</label>
                                         <input type="number" id="height" required min="150" max="220">
@@ -239,10 +238,8 @@
                                         <label for="weight">Weight (kg)</label>
                                         <input type="number" id="weight" required min="40" max="150">
                                     </div>
-                                    
                                 </div>
                                 <div class="form-row">
-                                    
                                     <div class="form-group">
                                         <label for="trainingHours">Training Hours/Week</label>
                                         <input type="number" id="trainingHours" required min="1" max="40">
@@ -263,6 +260,12 @@
                                         <span id="predictionScore">95.4</span>
                                     </div>
                                     <p>Predicted Performance Score</p>
+                                </div>
+                                <div class="accuracy-display">
+                                    <div class="score-circle">
+                                        <span id="accuracyScore">0.00</span>
+                                    </div>
+                                    <p>Accuracy Score</p>
                                 </div>
                                 <div class="factors-container">
                                     <h4>Key Factors</h4>
@@ -301,6 +304,48 @@
                         </div>
                     </div>
                 </div>
+                
+                <script>
+                    document.getElementById('predictorForm').addEventListener('submit', function(event) {
+                        event.preventDefault(); // Prevent the default form submission
+                
+                        // Get input values
+                        const age = document.getElementById('age').value;
+                        const gender = document.getElementById('gender').value;
+                        const height = document.getElementById('height').value;
+                        const weight = document.getElementById('weight').value;
+                        const trainingHours = document.getElementById('trainingHours').value;
+                
+                        // Prepare the data to send to the backend
+                        const data = {
+                            features: [age, gender, height, weight, trainingHours ],
+                        };
+                
+                        // Simulate a prediction response
+                        const predictionResponse = {
+                            score: 95.4,
+                            accuracy: 0.85, // Example accuracy score
+                            factors: {
+                                trainingVolume: 85,
+                                physicalFitness: 92,
+                                recoveryRate: 78,
+                                experienceImpact: 88,
+                            },
+                        };
+                
+                        // Display the results
+                        document.getElementById('predictionScore').innerText = predictionResponse.score;
+                        document.getElementById('accuracyScore').innerText = (predictionResponse.accuracy * 100).toFixed(2) + '%';
+                        document.querySelector('.result-empty').style.display = 'none';
+                        document.querySelector('.result-content').style.display = 'block';
+                
+                        // Update factor bars
+                        document.querySelector('.factor-bar:nth-child(1) .bar').style.width = predictionResponse.factors.trainingVolume + '%';
+                        document.querySelector('.factor-bar:nth-child(2) .bar').style.width = predictionResponse.factors.physicalFitness + '%';
+                        document.querySelector('.factor-bar:nth-child(3) .bar').style.width = predictionResponse.factors.recoveryRate + '%';
+                        document.querySelector('.factor-bar:nth-child(4) .bar').style.width = predictionResponse.factors.experienceImpact + '%';
+                    });
+                </script>
 
                 <!-- Team Optimization Page -->
                 <div class="content-page" id="team">
@@ -481,7 +526,7 @@
                                             <p>8:00 AM - 9:00 AM</p>
                                             <p>Team B</p>
                                         </div>
-                                        <div class="schedule-event" style="top: 420px; height: 120px; background-color: #4CAF50;">
+                                        <div class="schedule-event" style="top: 420px; height: 120px; background-color : #4CAF50;">
                                             <h4>Conditioning</h4>
                                             <p>3:00 PM - 5:00 PM</p>
                                             <p>Team C</p>
@@ -520,7 +565,109 @@
                             </div>
                         </div>
                     </div>
+                
+                    <!-- Modal for Adding/Editing Session -->
+                    <div id="sessionModal" class="modal">
+                        <div class="modal-content">
+                            <span class="close">&times;</span>
+                            <h2>Add/Edit Session</h2>
+                            <form id="sessionForm">
+                                <label for="sessionTitle">Session Title:</label>
+                                <input type="text" id="sessionTitle" required>
+                                <label for="sessionDay">Day:</label>
+                                <select id="sessionDay" required>
+                                    <option value="monday">Monday</option>
+                                    <option value="tuesday">Tuesday</option>
+                                    <option value="wednesday">Wednesday</option>
+                                    <option value="thursday">Thursday</option>
+                                    <option value="friday">Friday</option>
+                                    <option value="saturday">Saturday</option>
+                                    <option value="sunday">Sunday</option>
+                                </select>
+                                <label for="sessionTime">Time:</label>
+                                <input type="text" id="sessionTime" placeholder="e.g., 10:00 AM - 12:00 PM" required>
+                                <label for="sessionTeam">Team:</label>
+                                <input type="text" id="sessionTeam" required>
+                                <button type="submit" class="btn-primary">Save Session</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
+                
+                <script>
+                    const addSessionBtn = document.getElementById('addSessionBtn');
+                    const sessionModal = document.getElementById('sessionModal');
+                    const closeModal = document.querySelector('.close');
+                
+                    addSessionBtn.onclick = function() {
+                        sessionModal.style.display = "block";
+                    }
+                
+                    closeModal.onclick = function() {
+                        sessionModal.style.display = "none";
+                    }
+                
+                    window.onclick = function(event) {
+                        if (event.target == sessionModal) {
+                            sessionModal.style.display = "none";
+                        }
+                    }
+                
+                    document.getElementById('sessionForm').addEventListener('submit', function(event) {
+                        event.preventDefault();
+                        const title = document.getElementById('sessionTitle').value;
+                        const day = document.getElementById('sessionDay').value;
+                        const time = document.getElementById('sessionTime').value;
+                        const team = document.getElementById('sessionTeam').value;
+                
+                        // Logic to add the session to the respective day column
+                        const dayColumn = document.getElementById(day);
+                        const newEvent = document.createElement('div');
+                        newEvent.className = 'schedule-event';
+                        newEvent.style.top = '60px'; // Adjust based on time
+                        newEvent.style.height = '60px'; // Adjust based on duration
+                        newEvent.style.backgroundColor = '#FF9800'; // Example color
+                        newEvent.innerHTML = `<h4>${title}</h4><p>${time}</p><p>${team}</p>`;
+                        dayColumn.appendChild(newEvent);
+                
+                        sessionModal.style.display = "none"; // Close the modal after saving
+                        document.getElementById('sessionForm').reset(); // Reset the form
+                    });
+                </script>
+                
+                <style>
+                    .modal {
+                        display: none; 
+                        position: fixed; 
+                        z-index: 1; 
+                        left: 0; 
+                        top: 0; 
+                        width: 100%; 
+                        height: 100%; 
+                        overflow: auto; 
+                        background-color: rgb(0,0,0); 
+                        background-color: rgba(0,0,0,0.4); 
+                    }
+                    .modal-content {
+                        background-color: #fefefe;
+                        margin: 15% auto; 
+                        padding: 20px;
+                        border: 1px solid #888;
+                        width: 80%; 
+                    }
+                    .close {
+                        color: #aaa;
+                        float: right;
+                        font-size: 28px;
+                        font-weight: bold;
+                    }
+                    .close:hover,
+                    .close:focus {
+                        color: black;
+                        text-decoration: none;
+                        cursor: pointer;
+                    }
+                </style>
 
                 <!-- About Us Page -->
                 <div class="content-page" id="about">

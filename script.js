@@ -443,3 +443,88 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
         alert("Invalid email or password. Please try again.");
     }
 });
+
+document.getElementById('predictorForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    // Get input values
+    const age = document.getElementById('age').value;
+    const gender = document.getElementById('gender').value;
+    const height = document.getElementById('height').value;
+    const weight = document.getElementById('weight').value;
+    const trainingHours = document.getElementById('trainingHours').value;
+
+    // Prepare the data to send to the backend
+    const data = {
+        features: [age, gender, height, weight, trainingHours]
+    };
+
+    // Send a POST request to the backend
+    fetch('http://127.0.0.1:5000', { // Adjust the URL if your backend is hosted elsewhere
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(result => {
+        // Handle the response from the backend
+        if (result.error) {
+            alert(result.error); // Show error message
+        } else {
+            // Display the prediction result
+            document.getElementById('predictionScore').innerText = result.Performance_Score.toFixed(2);
+            document.querySelector('.result-empty').style.display = 'none'; // Hide the empty result message
+            document.querySelector('.result-content').style.display = 'block'; // Show the result content
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred while predicting performance score.');
+    });
+});
+
+
+
+    document.getElementById('predictorForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        // Get input values
+        const age = document.getElementById('age').value;
+        const gender = document.getElementById('gender').value;
+        const height = document.getElementById('height').value;
+        const weight = document.getElementById('weight').value;
+        const trainingHours = document.getElementById('trainingHours').value;
+
+        // Prepare the data to send to the backend
+        const data = {
+            features: [age, gender, height, weight, trainingHours]
+        };
+
+        // Send a POST request to the backend
+        fetch('http://127.0.0.1:5000', { // Adjust the URL if your backend is hosted elsewhere
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(result => {
+            // Handle the response from the backend
+            if (result.error) {
+                alert(result.error); // Show error message
+            } else {
+                // Display the prediction result
+                document.getElementById('predictionScore').innerText = result.Performance_Score.toFixed(2);
+                document.getElementById('accuracyScore').innerText = result.Accuracy_Score.toFixed(2);
+                document.querySelector('.result-empty').style.display = 'none'; // Hide the empty result message
+                document.querySelector('.result-content').style.display = 'block'; // Show the result content
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred while predicting performance score.');
+        });
+    });
