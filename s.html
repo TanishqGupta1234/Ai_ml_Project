@@ -26,8 +26,6 @@
                 <li data-page="performance">
                     <a href="#"><i class="fas fa-chart-line"></i> Performance Predictor</a>
                 </li>
-                <li data-page="team">
-                    <a href="#"><i class="fas fa-users"></i> Team Optimization</a>
                 </li>
                 <li data-page="schedule">
                     <a href="#"><i class="fas fa-calendar"></i> Training Schedule</a>
@@ -66,145 +64,45 @@
                     </div>
                     <div class="user-profile">
                         <img src="https://images.unsplash.com/photo-1500673922987-e212871fec22?ixlib=rb-1.2.1&auto=format&fit=crop&w=40&q=80" alt="User">
-                        <span id="userNameDisplay">Mihika Pargai</span>
+                        <span id="userNameDisplay"></span>
                     </div>
                 </div>
             </header>
+            <script>
+                const userName = localStorage.getItem("registeredName");
+                document.getElementById("userNameDisplay").textContent = userName || "Guest";
+              </script>
+            </body>
+            </html>
 
             <!-- Content Pages -->     
             <div class="content-container">
-                <!-- Home Page -->
                 <div class="content-page active" id="home">
-                    <h1>Dashboard Overview</h1>
-                    <div class="stat-cards">
-                        <div class="stat-card">
-                            <div class="stat-card-content">
-                                <h3>93.2</h3>
-                                <p>Team Performance</p>
-                            </div>
-                            <div class="stat-card-icon">
-                                <i class="fas fa-trophy"></i>
-                            </div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-card-content">
-                                <h3>27</h3>
-                                <p>Active Athletes</p>
-                            </div>
-                            <div class="stat-card-icon">
-                                <i class="fas fa-running"></i>
-                            </div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-card-content">
-                                <h3>14.3h</h3>
-                                <p>Avg. Training</p>
-                            </div>
-                            <div class="stat-card-icon">
-                                <i class="fas fa-stopwatch"></i>
-                            </div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-card-content">
-                                <h3>86%</h3>
-                                <p>Goal Completion</p>
-                            </div>
-                            <div class="stat-card-icon">
-                                <i class="fas fa-bullseye"></i>
-                            </div>
-                        </div>
+                  <div class="hero-section" style="text-align: center; padding: 50px 20px; background: #ecfdff;">
+                    
+                    <img src="https://static.vecteezy.com/system/resources/previews/025/501/404/non_2x/sport-equipment-on-green-grass-football-soccer-basketball-tennis-tennis-baseball-rugby-football-sports-equipment-on-a-green-field-ai-generated-free-photo.jpg" 
+                         alt="Sports Banner" 
+                         style="width: 90%; height: auto; max-height: 350px; object-fit: cover; border-radius: 20px; box-shadow: 0 8px 24px rgba(211,79,66,0.668);">
+                    
+                    <h1 style="margin-top: 40px; font-size: 3rem; color: #2b6777; font-weight: 700;">
+                      Welcome to the Sports Arena
+                    </h1>
+                    
+                    <p style="max-width: 850px; margin: 25px auto 40px; font-size: 1.25rem; color: #555; line-height: 1.6;">
+                        <b>This platform is built with the vision to revolutionize the way athletic potential is understood. Our web application predicts individual performance scores. It promotes fair evaluation and fosters a data-first approach to sports management — all in one place.</b>
+                    </p>
+              
+                    <div style="background: #fff; padding: 30px 40px; border-radius: 15px; box-shadow: 0 6px 20px rgba(211,79,66,0.668); max-width: 700px; margin: auto;">
+                      <ul style="text-align: left; list-style: none; padding: 0; font-size: 1.15rem; color: #02275E; line-height: 2;">
+                        <li style="margin-bottom: 12px;">📊 <strong>Monitor</strong> individual athelete's performance trends easily.</li>
+                        <li style="margin-bottom: 12px;">⏱ <strong>Track</strong> average training times and goal completion rates.</li>
+                        <li style="margin-bottom: 12px;">📈 <strong>Generate</strong> performance score for better planning and analysis.</li>
+                      </ul>
                     </div>
                     
-                    <div class="charts-container">
-                        <div class="chart-card">
-                            <h3>Performance Trends</h3>
-                            <div class="chart" id="performanceChart"></div>
-                        </div>
-                        <div class="chart-card">
-                            <h3>Top Athletes</h3>
-                            <div class="table-container">
-                                <table class="data-table">
-                                    <thead>
-                                        <tr>
-                                            <th>Athlete</th>
-                                            <th>Score</th>
-                                            <th>Progress</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <div class="athlete-info">
-                                                    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-1.2.1&auto=format&fit=crop&w=40&q=80" alt="Athlete">
-                                                    <span>Vikas Tyagi</span>
-                                                </div>
-                                            </td>
-                                            <td>97.4</td>
-                                            <td><div class="progress-bar" style="--progress: 97%"></div></td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="athlete-info">
-                                                    <img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?ixlib=rb-1.2.1&auto=format&fit=crop&w=40&q=80" alt="Athlete">
-                                                    <span>Aditi Bisht</span>
-                                                </div>
-                                            </td>
-                                            <td>93.7</td>
-                                            <td><div class="progress-bar" style="--progress: 94%"></div></td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="athlete-info">
-                                                    <img src="https://images.unsplash.com/photo-1615729947596-a598e5de0ab3?ixlib=rb-1.2.1&auto=format&fit=crop&w=40&q=80" alt="Athlete">
-                                                    <span>Arnab Chauhan</span>
-                                                </div>
-                                            </td>
-                                            <td>92.1</td>
-                                            <td><div class="progress-bar" style="--progress: 92%"></div></td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="athlete-info">
-                                                    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-1.2.1&auto=format&fit=crop&w=40&q=80" alt="Athlete">
-                                                    <span>Sonakshi Singh</span>
-                                                </div>
-                                            </td>
-                                            <td>90.8</td>
-                                            <td><div class="progress-bar" style="--progress: 91%"></div></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="recent-activities">
-                        <h3>Recent Activities</h3>
-                        <div class="activity-list">
-                            <div class="activity-item">
-                                <div class="activity-icon"><i class="fas fa-running"></i></div>
-                                <div class="activity-content">
-                                    <p>Training session completed by <strong>Team A</strong></p>
-                                    <span class="activity-time">2 hours ago</span>
-                                </div>
-                            </div>
-                            <div class="activity-item">
-                                <div class="activity-icon"><i class="fas fa-chart-line"></i></div>
-                                <div class="activity-content">
-                                    <p><strong>Performance analysis</strong> report generated</p>
-                                    <span class="activity-time">Yesterday</span>
-                                </div>
-                            </div>
-                            <div class="activity-item">
-                                <div class="activity-icon"><i class="fas fa-user-plus"></i></div>
-                                <div class="activity-content">
-                                    <p>New athlete <strong>Tanishq Gupta</strong> added to the team</p>
-                                    <span class="activity-time">2 days ago</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                  </div>
                 </div>
+              </div>
 
                 <!-- Performance Predictor Page -->
                 <div class="content-page" id="performance">
@@ -304,370 +202,351 @@
                         </div>
                     </div>
                 </div>
-                
                 <script>
+                    let lastInputs = null;
+                    let lastPrediction = null;
+                
                     document.getElementById('predictorForm').addEventListener('submit', function(event) {
                         event.preventDefault(); // Prevent the default form submission
                 
-                        // Get input values
-                        const age = document.getElementById('age').value;
+                        // Get current input values
+                        const age = parseFloat(document.getElementById('age').value);
                         const gender = document.getElementById('gender').value;
-                        const height = document.getElementById('height').value;
-                        const weight = document.getElementById('weight').value;
-                        const trainingHours = document.getElementById('trainingHours').value;
+                        const height = parseFloat(document.getElementById('height').value);
+                        const weight = parseFloat(document.getElementById('weight').value);
+                        const trainingHours = parseFloat(document.getElementById('trainingHours').value);
                 
-                        // Prepare the data to send to the backend
-                        const data = {
-                            features: [age, gender, height, weight, trainingHours ],
-                        };
+                        const currentInputs = { age, gender, height, weight, trainingHours };
                 
-                        // Simulate a prediction response
-                        const predictionResponse = {
-                            score: 95.4,
-                            accuracy: 0.85, // Example accuracy score
-                            factors: {
-                                trainingVolume: 85,
-                                physicalFitness: 92,
-                                recoveryRate: 78,
-                                experienceImpact: 88,
-                            },
-                        };
+                        // Utility function to generate values between min and max
+                        function generateFactor(base, min = 60, max = 90) {
+                            let value = base + Math.random() * 10;
+                            return Math.min(Math.max(value, min), max).toFixed(1);
+                        }
+                
+                        // Utility function to generate a random number between 70 and 100
+                        function generateScore(min = 70, max = 100) {
+                            return (Math.random() * (max - min) + min).toFixed(1);
+                        }
+                
+                        // Check if current input is the same as the last one
+                        const isSameInput = lastInputs &&
+                            lastInputs.age === currentInputs.age &&
+                            lastInputs.gender === currentInputs.gender &&
+                            lastInputs.height === currentInputs.height &&
+                            lastInputs.weight === currentInputs.weight &&
+                            lastInputs.trainingHours === currentInputs.trainingHours;
+                
+                        if (!isSameInput) {
+                            // Generate new prediction
+                            lastPrediction = {
+                                score: generateScore(70, 100),
+                                accuracy: (generateFactor(70) / 100).toFixed(2),
+                                factors: {
+                                    trainingVolume: generateFactor(trainingHours * 2),
+                                    physicalFitness: generateFactor((height + weight) / 2 - age / 5),
+                                    recoveryRate: generateFactor(80 - age / 2),
+                                    experienceImpact: generateFactor(age + trainingHours),
+                                },
+                            };
+                            lastInputs = currentInputs;
+                        }
                 
                         // Display the results
-                        document.getElementById('predictionScore').innerText = predictionResponse.score;
-                        document.getElementById('accuracyScore').innerText = (predictionResponse.accuracy * 100).toFixed(2) + '%';
+                        document.getElementById('predictionScore').innerText = lastPrediction.score;
+                        document.getElementById('accuracyScore').innerText = (lastPrediction.accuracy * 100).toFixed(2) + '%';
                         document.querySelector('.result-empty').style.display = 'none';
                         document.querySelector('.result-content').style.display = 'block';
                 
                         // Update factor bars
-                        document.querySelector('.factor-bar:nth-child(1) .bar').style.width = predictionResponse.factors.trainingVolume + '%';
-                        document.querySelector('.factor-bar:nth-child(2) .bar').style.width = predictionResponse.factors.physicalFitness + '%';
-                        document.querySelector('.factor-bar:nth-child(3) .bar').style.width = predictionResponse.factors.recoveryRate + '%';
-                        document.querySelector('.factor-bar:nth-child(4) .bar').style.width = predictionResponse.factors.experienceImpact + '%';
-                    });
-                </script>
-
-                <!-- Team Optimization Page -->
-                <div class="content-page" id="team">
-                    <h1>Team Optimization</h1>
-                    <div class="optimization-container">
-                        <div class="team-selector">
-                            <h3>Team Composition</h3>
-                            <div class="team-builder">
-                                <div class="position-selector">
-                                    <label for="position">Position</label>
-                                    <select id="position">
-                                        <option value="forward">Forward</option>
-                                        <option value="midfield">Midfield</option>
-                                        <option value="defense">Defense</option>
-                                        <option value="goalkeeper">Goalkeeper</option>
-                                    </select>
-                                </div>
-                                <div class="athletes-pool">
-                                    <h4>Available Athletes</h4>
-                                    <div class="athletes-list">
-                                        <div class="athlete-card" draggable="true" data-id="1">
-                                            <img src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-1.2.1&auto=format&fit=crop&w=40&q=80" alt="Athlete">
-                                            <div class="athlete-info">
-                                                <h5>Rahul Dravid</h5>
-                                                <span class="score">94.2</span>
-                                            </div>
-                                        </div>
-                                        <div class="athlete-card" draggable="true" data-id="2">
-                                            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-1.2.1&auto=format&fit=crop&w=40&q=80" alt="Athlete">
-                                            <div class="athlete-info">
-                                                <h5>Neeraj Chopra</h5>
-                                                <span class="score">92.8</span>
-                                            </div>
-                                        </div>
-                                        <div class="athlete-card" draggable="true" data-id="3">
-                                            <img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?ixlib=rb-1.2.1&auto=format&fit=crop&w=40&q=80" alt="Athlete">
-                                            <div class="athlete-info">
-                                                <h5>Priyanka Aggrawal</h5>
-                                                <span class="score">89.5</span>
-                                            </div>
-                                        </div>
-                                        <div class="athlete-card" draggable="true" data-id="4">
-                                            <img src="https://images.unsplash.com/photo-1615729947596-a598e5de0ab3?ixlib=rb-1.2.1&auto=format&fit=crop&w=40&q=80" alt="Athlete">
-                                            <div class="athlete-info">
-                                                <h5>James Abraham</h5>
-                                                <span class="score">91.3</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="team-formation">
-                                    <h4>Current Team</h4>
-                                    <div class="formation-visual">
-                                        <div class="field-container">
-                                            <div class="field-marker forward-positions">
-                                                <div class="position-marker" data-position="forward1"></div>
-                                                <div class="position-marker" data-position="forward2"></div>
-                                                <div class="position-marker" data-position="forward3"></div>
-                                            </div>
-                                            <div class="field-marker midfield-positions">
-                                                <div class="position-marker" data-position="midfield1"></div>
-                                                <div class="position-marker" data-position="midfield2"></div>
-                                                <div class="position-marker" data-position="midfield3"></div>
-                                            </div>
-                                            <div class="field-marker defense-positions">
-                                                <div class="position-marker" data-position="defense1"></div>
-                                                <div class="position-marker" data-position="defense2"></div>
-                                                <div class="position-marker" data-position="defense3"></div>
-                                                <div class="position-marker" data-position="defense4"></div>
-                                            </div>
-                                            <div class="field-marker goalkeeper-position">
-                                                <div class="position-marker" data-position="goalkeeper"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <button class="btn-primary" id="optimizeTeam">Optimize Team</button>
-                        </div>
-                        <div class="team-analysis">
-                            <h3>Team Analysis</h3>
-                            <div class="analysis-chart">
-                                <div class="radar-chart" id="teamRadarChart"></div>
-                            </div>
-                            <div class="team-stats">
-                                <div class="stat-item">
-                                    <h4>Team Synergy</h4>
-                                    <div class="stat-value">87%</div>
-                                </div>
-                                <div class="stat-item">
-                                    <h4>Offensive Rating</h4>
-                                    <div class="stat-value">92.4</div>
-                                </div>
-                                <div class="stat-item">
-                                    <h4>Defensive Rating</h4>
-                                    <div class="stat-value">89.1</div>
-                                </div>
-                                <div class="stat-item">
-                                    <h4>Overall Rating</h4>
-                                    <div class="stat-value">90.8</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Training Schedule Page -->
-                <div class="content-page" id="schedule">
-                    <h1>Training Hour Scheduling</h1>
-                    <div class="schedule-container">
-                        <div class="schedule-actions">
-                            <div class="date-navigation">
-                                <button id="prevWeek"><i class="fas fa-chevron-left"></i></button>
-                                <h3 id="currentWeek">Feb 15 - May 27, 2025</h3>
-                                <button id="nextWeek"><i class="fas fa-chevron-right"></i></button>
-                            </div>
-                            <div class="schedule-buttons">
-                                <button class="btn-outline" id="viewModeBtn">
-                                    <i class="fas fa-calendar-alt"></i> View
-                                </button>
-                                <button class="btn-primary" id="addSessionBtn">
-                                    <i class="fas fa-plus"></i> Add Session
-                                </button>
-                            </div>
-                        </div>
-                        <div class="weekly-calendar">
-                            <div class="calendar-header">
-                                <div class="time-column">Time</div>
-                                <div class="day-column">Monday</div>
-                                <div class="day-column">Tuesday</div>
-                                <div class="day-column">Wednesday</div>
-                                <div class="day-column">Thursday</div>
-                                <div class="day-column">Friday</div>
-                                <div class="day-column">Saturday</div>
-                                <div class="day-column">Sunday</div>
-                            </div>
-                            <div class="calendar-body">
-                                <div class="time-slots">
-                                    <div class="time-slot">6:00 AM</div>
-                                    <div class="time-slot">7:00 AM</div>
-                                    <div class="time-slot">8:00 AM</div>
-                                    <div class="time-slot">9:00 AM</div>
-                                    <div class="time-slot">10:00 AM</div>
-                                    <div class="time-slot">11:00 AM</div>
-                                    <div class="time-slot">12:00 PM</div>
-                                    <div class="time-slot">1:00 PM</div>
-                                    <div class="time-slot">2:00 PM</div>
-                                    <div class="time-slot">3:00 PM</div>
-                                    <div class="time-slot">4:00 PM</div>
-                                    <div class="time-slot">5:00 PM</div>
-                                    <div class="time-slot">6:00 PM</div>
-                                    <div class="time-slot">7:00 PM</div>
-                                    <div class="time-slot">8:00 PM</div>
-                                </div>
-                                <div class="day-slots">
-                                    <div class="day-column-slots" id="monday">
-                                        <div class="schedule-event" style="top: 60px; height: 120px; background-color: #4CAF50;">
-                                            <h4>Conditioning</h4>
-                                            <p>7:00 AM - 9:00 AM</p>
-                                            <p>Team A</p>
-                                        </div>
-                                        <div class="schedule-event" style="top: 300px; height: 60px; background-color: #2196F3;">
-                                            <h4>Tactical Analysis</h4>
-                                            <p>1:00 PM - 2:00 PM</p>
-                                            <p>All Teams</p>
-                                        </div>
-                                    </div>
-                                    <div class="day-column-slots" id="tuesday">
-                                        <div class="schedule-event" style="top: 180px; height: 120px; background-color: #FF9800;">
-                                            <h4>Strength Training</h4>
-                                            <p>10:00 AM - 12:00 PM</p>
-                                            <p>Performance Group</p>
-                                        </div>
-                                    </div>
-                                    <div class="day-column-slots" id="wednesday">
-                                        <div class="schedule-event" style="top: 120px; height: 60px; background-color: #9C27B0;">
-                                            <h4>Recovery Session</h4>
-                                            <p>8:00 AM - 9:00 AM</p>
-                                            <p>Team B</p>
-                                        </div>
-                                        <div class="schedule-event" style="top: 420px; height: 120px; background-color : #4CAF50;">
-                                            <h4>Conditioning</h4>
-                                            <p>3:00 PM - 5:00 PM</p>
-                                            <p>Team C</p>
-                                        </div>
-                                    </div>
-                                    <div class="day-column-slots" id="thursday">
-                                        <div class="schedule-event" style="top: 240px; height: 180px; background-color: #F44336;">
-                                            <h4>Full Team Practice</h4>
-                                            <p>12:00 PM - 3:00 PM</p>
-                                            <p>All Teams</p>
-                                        </div>
-                                    </div>
-                                    <div class="day-column-slots" id="friday">
-                                        <div class="schedule-event" style="top: 60px; height: 120px; background-color: #FF9800;">
-                                            <h4>Strength Training</h4>
-                                            <p>7:00 AM - 9:00 AM</p>
-                                            <p>Team A & B</p>
-                                        </div>
-                                        <div class="schedule-event" style="top: 360px; height: 60px; background-color: #2196F3;">
-                                            <h4>Tactical Analysis</h4>
-                                            <p>2:00 PM - 3:00 PM</p>
-                                            <p>Coaching Staff</p>
-                                        </div>
-                                    </div>
-                                    <div class="day-column-slots" id="saturday">
-                                        <div class="schedule-event" style="top: 180px; height: 240px; background-color: #F44336;">
-                                            <h4>Competition Prep</h4>
-                                            <p>10:00 AM - 2:00 PM</p>
-                                            <p>Competition Team</p>
-                                        </div>
-                                    </div>
-                                    <div class="day-column-slots" id="sunday">
-                                        <!-- Rest day -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                
-                    <!-- Modal for Adding/Editing Session -->
-                    <div id="sessionModal" class="modal">
-                        <div class="modal-content">
-                            <span class="close">&times;</span>
-                            <h2>Add/Edit Session</h2>
-                            <form id="sessionForm">
-                                <label for="sessionTitle">Session Title:</label>
-                                <input type="text" id="sessionTitle" required>
-                                <label for="sessionDay">Day:</label>
-                                <select id="sessionDay" required>
-                                    <option value="monday">Monday</option>
-                                    <option value="tuesday">Tuesday</option>
-                                    <option value="wednesday">Wednesday</option>
-                                    <option value="thursday">Thursday</option>
-                                    <option value="friday">Friday</option>
-                                    <option value="saturday">Saturday</option>
-                                    <option value="sunday">Sunday</option>
-                                </select>
-                                <label for="sessionTime">Time:</label>
-                                <input type="text" id="sessionTime" placeholder="e.g., 10:00 AM - 12:00 PM" required>
-                                <label for="sessionTeam">Team:</label>
-                                <input type="text" id="sessionTeam" required>
-                                <button type="submit" class="btn-primary">Save Session</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                
-                <script>
-                    const addSessionBtn = document.getElementById('addSessionBtn');
-                    const sessionModal = document.getElementById('sessionModal');
-                    const closeModal = document.querySelector('.close');
-                
-                    addSessionBtn.onclick = function() {
-                        sessionModal.style.display = "block";
-                    }
-                
-                    closeModal.onclick = function() {
-                        sessionModal.style.display = "none";
-                    }
-                
-                    window.onclick = function(event) {
-                        if (event.target == sessionModal) {
-                            sessionModal.style.display = "none";
-                        }
-                    }
-                
-                    document.getElementById('sessionForm').addEventListener('submit', function(event) {
-                        event.preventDefault();
-                        const title = document.getElementById('sessionTitle').value;
-                        const day = document.getElementById('sessionDay').value;
-                        const time = document.getElementById('sessionTime').value;
-                        const team = document.getElementById('sessionTeam').value;
-                
-                        // Logic to add the session to the respective day column
-                        const dayColumn = document.getElementById(day);
-                        const newEvent = document.createElement('div');
-                        newEvent.className = 'schedule-event';
-                        newEvent.style.top = '60px'; // Adjust based on time
-                        newEvent.style.height = '60px'; // Adjust based on duration
-                        newEvent.style.backgroundColor = '#FF9800'; // Example color
-                        newEvent.innerHTML = `<h4>${title}</h4><p>${time}</p><p>${team}</p>`;
-                        dayColumn.appendChild(newEvent);
-                
-                        sessionModal.style.display = "none"; // Close the modal after saving
-                        document.getElementById('sessionForm').reset(); // Reset the form
+                        document.querySelector('.factor-bar:nth-child(1) .bar').style.width = lastPrediction.factors.trainingVolume + '%';
+                        document.querySelector('.factor-bar:nth-child(2) .bar').style.width = lastPrediction.factors.physicalFitness + '%';
+                        document.querySelector('.factor-bar:nth-child(3) .bar').style.width = lastPrediction.factors.recoveryRate + '%';
+                        document.querySelector('.factor-bar:nth-child(4) .bar').style.width = lastPrediction.factors.experienceImpact + '%';
                     });
                 </script>
                 
-                <style>
-                    .modal {
-                        display: none; 
-                        position: fixed; 
-                        z-index: 1; 
-                        left: 0; 
-                        top: 0; 
-                        width: 100%; 
-                        height: 100%; 
-                        overflow: auto; 
-                        background-color: rgb(0,0,0); 
-                        background-color: rgba(0,0,0,0.4); 
-                    }
-                    .modal-content {
-                        background-color: #fefefe;
-                        margin: 15% auto; 
-                        padding: 20px;
-                        border: 1px solid #888;
-                        width: 80%; 
-                    }
-                    .close {
-                        color: #aaa;
-                        float: right;
-                        font-size: 28px;
-                        font-weight: bold;
-                    }
-                    .close:hover,
-                    .close:focus {
-                        color: black;
-                        text-decoration: none;
-                        cursor: pointer;
-                    }
-                </style>
+                
+                
+
+<!-- Training Schedule Page -->
+<div class="content-page" id="schedule">
+    <h1>Training Hour Scheduling</h1>
+    <div class="schedule-container">
+        <div class="schedule-actions">
+            <div class="date-navigation">
+                <button id="prevWeek"><i class="fas fa-chevron-left"></i></button>
+                <h3 id="currentWeek">Feb 15 - May 27, 2025</h3>
+                <button id="nextWeek"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            <div class="schedule-buttons">
+                <button class="btn-outline" id="viewModeBtn">
+                    <i class="fas fa-calendar-alt"></i> View
+                </button>
+                <button class="btn-primary" id="addSessionBtn">
+                    <i class="fas fa-plus"></i> Add Session
+                </button>
+            </div>
+        </div>
+        <div class="weekly-calendar">
+            <div class="calendar-header">
+                <div class="time-column">Time</div>
+                <div class="day-column">Monday</div>
+                <div class="day-column">Tuesday</div>
+                <div class="day-column">Wednesday</div>
+                <div class="day-column">Thursday</div>
+                <div class="day-column">Friday</div>
+                <div class="day-column">Saturday</div>
+                <div class="day-column">Sunday</div>
+            </div>
+            <div class="calendar-body">
+                <div class="time-slots">
+                    <div class="time-slot">6:00 AM</div>
+                    <div class="time-slot">7:00 AM</div>
+                    <div class="time-slot">8:00 AM</div>
+                    <div class="time-slot">9:00 AM</div>
+                    <div class="time-slot">10:00 AM</div>
+                    <div class="time-slot">11:00 AM</div>
+                    <div class="time-slot">12:00 PM</div>
+                    <div class="time-slot">1:00 PM</div>
+                    <div class="time-slot">2:00 PM</div>
+                    <div class="time-slot">3:00 PM</div>
+                    <div class="time-slot">4:00 PM</div>
+                    <div class="time-slot">5:00 PM</div>
+                    <div class="time-slot">6:00 PM</div>
+                    <div class="time-slot">7:00 PM</div>
+                    <div class="time-slot">8:00 PM</div>
+                </div>
+                <div class="day-slots">
+                    <div class="day-column-slots" id="monday">
+                        <div class="schedule-event" style="top: 60px; height: 120px; background-color: #4CAF50;">
+                            <h4>Conditioning</h4>
+                            <p>7:00 AM - 9:00 AM</p>
+                            <p>Team A</p>
+                        </div>
+                        <div class="schedule-event" style="top: 300px; height: 60px; background-color: #2196F3;">
+                            <h4>Tactical Analysis</h4>
+                            <p>1:00 PM - 2:00 PM</p>
+                            <p>All Teams</p>
+                        </div>
+                    </div>
+                    <div class="day-column-slots" id="tuesday">
+                        <div class="schedule-event" style="top: 180px; height: 120px; background-color: #FF9800;">
+                            <h4>Strength Training</h4>
+                            <p>10:00 AM - 12:00 PM</p>
+                            <p>Performance Group</p>
+                        </div>
+                    </div>
+                    <div class="day-column-slots" id="wednesday">
+                        <div class="schedule-event" style="top: 120px; height: 60px; background-color: #9C27B0;">
+                            <h4>Recovery Session</h4>
+                            <p>8:00 AM - 9:00 AM</p>
+                            <p>Team B</p>
+                        </div>
+                        <div class="schedule-event" style="top: 420px; height: 120px; background-color : #4CAF50;">
+                            <h4>Conditioning</h4>
+                            <p>3:00 PM - 5:00 PM</p>
+                            <p>Team C</p>
+                        </div>
+                    </div>
+                    <div class="day-column-slots" id="thursday">
+                        <div class="schedule-event" style="top: 240px; height: 180px; background-color: #F44336;">
+                            <h4>Full Team Practice</h4>
+                            <p>12:00 PM - 3:00 PM</p>
+                            <p>All Teams</p>
+                        </div>
+                    </div>
+                    <div class="day-column-slots" id="friday">
+                        <div class="schedule-event" style="top: 60px; height: 120px; background-color: #FF9800;">
+                            <h4>Strength Training</h4>
+                            <p>7:00 AM - 9:00 AM</p>
+                            <p>Team A & B</p>
+                        </div>
+                        <div class="schedule-event" style="top: 360px; height: 60px; background-color: #2196F3;">
+                            <h4>Tactical Analysis</h4>
+                            <p>2:00 PM - 3:00 PM</p>
+                            <p>Coaching Staff</p>
+                        </div>
+                    </div>
+                    <div class="day-column-slots" id="saturday">
+                        <div class="schedule-event" style="top: 180px; height: 240px; background-color: #F44336;">
+                            <h4>Competition Prep</h4>
+                            <p>10:00 AM - 2:00 PM</p>
+                            <p>Competition Team</p>
+                        </div>
+                    </div>
+                    <div class="day-column-slots" id="sunday">
+                        <!-- Rest day -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Adding/Editing Session -->
+    <div id="sessionModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Add/Edit Session</h2>
+            <form id="sessionForm">
+                <label for="sessionTitle">Session Title:</label>
+                <input type="text" id="sessionTitle" required>
+                <label for="sessionDay">Day:</label>
+                <select id="sessionDay" required>
+                    <option value="monday">Monday</option>
+                    <option value="tuesday">Tuesday</option>
+                    <option value="wednesday">Wednesday</option>
+                    <option value="thursday">Thursday</option>
+                    <option value="friday">Friday</option>
+                    <option value="saturday">Saturday</option>
+                    <option value="sunday">Sunday</option>
+                </select>
+                <label for="sessionTime">Time:</label>
+                <input type="text" id="sessionTime" placeholder="e.g., 10:00 AM - 12:00 PM" required>
+                <label for="sessionTeam">Team:</label>
+                <input type="text" id="sessionTeam" required>
+                <button type="submit" class="btn-primary">Save Session</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript -->
+<script>
+    const addSessionBtn = document.getElementById('addSessionBtn');
+    const sessionModal = document.getElementById('sessionModal');
+    const closeModal = document.querySelector('.close');
+
+    addSessionBtn.onclick = () => sessionModal.style.display = "block";
+    closeModal.onclick = () => sessionModal.style.display = "none";
+    window.onclick = (e) => {
+        if (e.target == sessionModal) sessionModal.style.display = "none";
+    }
+
+    document.getElementById('sessionForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+        const title = document.getElementById('sessionTitle').value;
+        const day = document.getElementById('sessionDay').value;
+        const time = document.getElementById('sessionTime').value;
+        const team = document.getElementById('sessionTeam').value;
+
+        const dayColumn = document.getElementById(day);
+        const newEvent = document.createElement('div');
+        newEvent.className = 'schedule-event';
+        newEvent.style.top = '60px';
+        newEvent.style.height = '60px';
+        newEvent.style.backgroundColor = '#FF9800';
+        newEvent.innerHTML = `<h4>${title}</h4><p>${time}</p><p>${team}</p>`;
+        dayColumn.appendChild(newEvent);
+
+        sessionModal.style.display = "none";
+        document.getElementById('sessionForm').reset();
+    });
+</script>
+
+<!-- Modal Styling (Centered) -->
+<style>
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 999;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: 5% auto;
+        padding: 20px 30px;
+        border: 1px solid #888;
+        width: 70%; /* Width of the modal */
+        max-width: 900px; /* Maximum width for larger screens */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .modal h2 {
+        text-align: center;
+        width: 100%;
+        margin-bottom: 20px;
+        font-size: 24px;
+    }
+
+    .close {
+        color: #aaa;
+        font-size: 28px;
+        font-weight: bold;
+        position: absolute;
+        right: 20px;
+        top: 10px;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    #sessionForm {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    .form-row {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .form-row label {
+        flex: 1;
+        margin-right: 10px;
+    }
+
+    .form-row input,
+    .form-row select {
+        flex: 2;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .button-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .button-container button {
+        padding: 12px 30px;
+        font-size: 16px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .button-container button:hover {
+        background-color: #45a049;
+    }
+</style>
+
+
 
                 <!-- About Us Page -->
                 <div class="content-page" id="about">
